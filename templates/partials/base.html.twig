@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-au"><!--can use twig to set this automatically-->
+<head>
+	<meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% if header.title %}{{ header.title|e('html') }} - {% endif %}{{ site.title|e('html') }}</title>
+  {% block stylesheets %}
+    {% do assets.addCss('theme://css/custom.css') %}
+    {% do assets.addCss('https://fonts.googleapis.com/css2?family=Oswald&display=swap') %}
+  {% endblock %}
+  {% block javascripts %}
+    {% do assets.addJs('https://kit.fontawesome.com/d4cd6bdb04.js') %}
+    {% do assets.addJs('theme://js/menu.js', { group: 'bottom' }) %}
+  {% endblock %}
+  {{ assets.css()|raw }}
+  {{ assets.js()|raw }}
+</head>
+<body>
+  <header id="page-top">
+    {% include 'partials/navigation.html.twig' %}
+  </header>
+	{% block main %}
+		<main class="styling-box">
+			{% block content %}{% endblock %}
+		</main>
+	{% endblock %}
+	<footer>
+    {% include 'partials/footer.html.twig' %}
+	</footer>
+  {% block bottom %}
+    {{ assets.js('bottom')|raw }}
+  {% endblock %}
+</body>
+</html>

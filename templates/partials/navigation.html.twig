@@ -1,0 +1,11 @@
+<nav>
+  <ul id="menu">
+    <li id="logo" class="styling-box"><a href="{{ (base_url == '' ? '/' : base_url)|e }}"><hgroup><h1 aria-label="{{ site.title|e('html') }}">{{ site.title|e('html') }}</h1><p>{{ site.subtitle|e('html') }}</p></hgroup></a></li>
+    <div class="styling-box">
+      <li class="toggle" aria-label="Menu"><a href="#"><span class="fas fa-bars"></span></a></li>
+      {% for page in pages.children.visible %}
+        <li class="item"><a href="{{ page.url }}">{{ page.menu }}</a></li>
+      {% endfor %}
+    </div>
+  </ul>
+</nav>

@@ -1,0 +1,23 @@
+{% extends 'partials/base.html.twig' %}
+
+{% set collection = page.collection() %}
+
+{% block content %}
+  <h1 class="centre">Blog</h1>
+  {% for page in collection %}
+    <article class="card">
+      <header class="card-header">
+        {# todo: if/else preview image#}
+        <span class="card-image"><img src="{{ page.url }}/blog-preview.jpg"></span>
+        <div class="card-info">
+          <h2 class="card-title"><a href="{{ page.url }}">{{ page.title }}</a></h2>
+          <time class="card-date">{{ page.date | date("d M Y") }}</time>
+        </div>
+      </header>
+      <div class="card-content">
+        {{ page.summary|raw }}
+        <a class="card-continue" href="{{ page.url }}" aria-label="Continue reading {{ page.title }}"><button type="button">Continue reading</button></a>
+      </div>
+    </article>
+  {% endfor %}
+{% endblock %}
